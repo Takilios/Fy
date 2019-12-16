@@ -50,7 +50,35 @@ public class OrderServiceImpl implements OrderService {
         }
             return orderList;
     }
+     @Override
+    public Object cancelOrder(Integer orderId) {
+        return orderDao.cancelOrder(orderId);
+    }
 
+    @Override
+    public Object confirmOrder(Integer orderId) {
+        return orderDao.confirmOrder(orderId);
+    }
+
+    @Override
+    public Object refundOrderItem(OrderItem orderItem) {
+        return orderDao.refundOrderItem(orderItem);
+    }
+
+    @Override
+    public Object orderPayment(Integer orderId) {
+        return null;
+    }
+
+    @Override
+    public Object findOrderByOrderSn(Integer orderSn) {
+        return orderDao.findOrderByOrderSn(orderSn);
+    }
+
+    @Override
+    public List<OrderPo> findAllOrders(RequestParamDto requestParamDto) {
+        return orderDao.findAllOrders(requestParamDto);
+    }
 
 
 
