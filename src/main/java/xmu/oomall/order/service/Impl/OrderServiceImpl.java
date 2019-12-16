@@ -51,7 +51,29 @@ public class OrderServiceImpl implements OrderService {
             return orderList;
     }
 
+/**
+     * 用户查看订单列表
+     * @param userId
+     * @param page
+     * @param limit
+     * @return
+     */
+    
+    @Override
+    public List<OrderPo> getOrderListByUserId(Integer userId,Integer page,Integer limit) {
+        return orderDao.getOrderListByUserId(userId,page,limit);
+    }
 
+    /**
+     * 用户查看单个订单详情
+     * @param id
+     * @return
+     */
+    @Override
+    public List<OrderItem> getOrderDetails(Integer id) {
+
+        return orderDao.getOrderDetails(id);
+    }
 
 
 
