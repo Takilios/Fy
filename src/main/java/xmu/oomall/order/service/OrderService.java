@@ -49,4 +49,17 @@ public interface OrderService {
      * @return
      */
     Object orderPayment(Integer orderId);
+     /**
+     * 根据订单编号查找订单
+     * @param orderSn
+     * @return order
+     */
+    Object findOrderByOrderSn(Integer orderSn);
+
+    /**
+     * 查看所有订单
+     * @param requestParamDto
+     * @return orderPoList
+     */
+    List<OrderPo> findAllOrders(RequestParamDto requestParamDto);
 }
