@@ -94,6 +94,33 @@ public class OrderController {
         return ResponseUtil.ok();
     }
 
+    
+    
+     /**
+     * 用户查看自己的订单列表
+     * @param userId
+     * @return orderList
+     */
+    @GetMapping("/orders")
+    public Object getOrderListByUserId(@RequestHeader Integer userId,@RequestParam Integer page,@RequestParam Integer limit)
+    {
+    List<OrderPo> userOrder = orderService.getOrderListByUserId(userId,page,limit);
+    return ResponseUtil.ok(userOrder);
+    }
+
+    /**
+     * 用户查看单个订单详情
+     * @param Id 订单id
+     * @return  orderItemList
+     */
+    @GetMapping("/orders/{id}")
+    public Object getOrderDetails(@PathVariable String Id)
+    {
+    Integer id=Integer.valueOf(Id);
+    List<OrderItem> userOrder = orderService.getOrderDetails(id);
+    return ResponseUtil.ok(userOrder);
+    }
+    
     /**
      * 管理员查看订单
      * @param userId
