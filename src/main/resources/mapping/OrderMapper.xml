@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xmu.oomall.order.mapper.OrderMapper">
+
+    <select id="getCanCalculateRebateOrder" resultType="xmu.oomall.order.domain.OrderPo">
+        select id,user_id,order_sn,status as statusCode,consignee,mobile,message,goods_price,coupon_price,rebate_price,
+        freight_price,integral_price,ship_sn,ship_channel,ship_time,confirm_time,end_time,pay_time,parent_id,address,
+        gmt_create,gmt_modified,is_deleted as beDeleted
+        from oomall_order
+        where confirm_time &gt; #{startTime}
+        and confirm_time &lt; #{endTime}
+        and (status=6 or status=7 or status=8);
+    </select>
+
+    <select id="getOrderItemPoFromOrderId" parameterType="Integer" resultType="xmu.oomall.order.domain.OrderItemPo">
+        select id,order_id,item_type,status as statusCode,number,price,deal_price,product_id,goods_id,name_with_specifications,
+        gmt_modified,gmt_create,is_deleted as beDeleted from oomall_order_item
+        where order_id=#{orderId} and (status=4 or status=3 or status=7 or status=8);
+    </select>
+<!--
+    <insert id="createOrder">
+        insert into share_rule(share_level_strategy,goods_id) values (#{shareLevelStrategy},#{goodsId});
+    </insert>
+    <select id="findAll" resultType="xmu.oomall.order.domain.ShareRule">
+       select * from share_rule;
+   </select>
+
+    <insert id="addShareRule">
+        insert into share_rule(share_level_strategy,goods_id) values (#{shareLevelStrategy},#{goodsId});
+    </insert>
+
+    <select id="getShareRule" resultType="xmu.oomall.order.domain.ShareRule">
+        select * from share_rule where id=#{shareRuleId} and is_deleted=0;
+    </select>
+
+
+    <select id="isExistedShareRule" parameterType="Integer"  resultType="xmu.oomall.order.domain.ShareRule" >
+       select * from share_rule where goods_id=#{goodsId} and is_deleted=0;
+   </select>
+
+    <update id="deleteShareRule" parameterType="Integer">
+        update share_rule set is_deleted='1' where id=#{shareRuleId} and is_deleted=0;
+    </update>
+
+    <select id="getShareRuleByGoodsId" resultType="xmu.oomall.order.domain.ShareRule">
+         select * from share_rule where goods_id=#{goodsId} and is_deleted=0;
+    </select>
+    -->
+</mapper>
