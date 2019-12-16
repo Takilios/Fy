@@ -91,4 +91,34 @@ public class OrderDao {
             return orderItemPo;
         }
     }
+    
+    /**
+     * 用户获取订单列表
+     * @param userId
+     * @param page
+     * @param limit
+     * @return
+     */
+    public List<OrderPo> getOrderListByUserId(Integer userId,Integer page,Integer limit)
+    {
+        return orderMapper.getOrderListByUserId(userId,page, limit);
+    }
+
+    /**
+     * 用户获取订单详情
+     * @param id
+     * @return
+     */
+    public List<OrderItem> getOrderDetails(Integer id) {
+
+        List<OrderItemPo>poList=orderMapper.getOrderDetails(id);
+        List<OrderItem> list=new ArrayList<>();
+        for(OrderItemPo po:poList)
+        {
+            OrderItem item=(OrderItem)po;
+            //todo 调用商品模块获取详情
+            list.add(item);
+        }
+     return list;
+    }
 }
