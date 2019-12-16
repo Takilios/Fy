@@ -9,7 +9,9 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.*;
 
-
+/**
+ * @author :Fy
+ */
 @Mapper
 public interface OrderMapper {
 
@@ -25,10 +27,26 @@ public interface OrderMapper {
 
     /**
     * @Description: 根据订单号获取符合分享可计算返点条件的订单
-    * @Param: [orderId]
+    * @Param: orderId
     * @return: java.util.List<xmu.oomall.order.domain.OrderItemPo>
     * @Author: kxw
     * @Date: 2019/12/16
     */
     public List<OrderItemPo> getOrderItemPoFromOrderId(@Param("orderId") Integer orderId);
+
+    /**
+     * 更改订单状态
+     * @param orderId
+     * @param status
+     * @return newOrder
+     */
+    Object updateOrderByOrderId(Integer orderId,Integer status);
+
+    /**
+     * 获取订单Po
+     * @param orderId
+     * @return
+     */
+    Object getOrderPoById(Integer orderId);
+
 }
